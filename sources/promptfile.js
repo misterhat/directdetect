@@ -4,6 +4,8 @@ var cheerio = require('cheerio'),
 module.exports.domain = 'promptfile.com';
 
 module.exports.sight = function (url, options, done) {
+    options.follow = true;
+
     needle.get(url, options, function (err, res, body) {
         var $, hash;
 
@@ -23,7 +25,7 @@ module.exports.sight = function (url, options, done) {
             return done(null, new Error('Could not find form hash.'));
         }
 
-        needle.post(url, options, 'chash=' + hash, function (err, res, body) {
+        needle.post(url, { chash: hash }, options, function (err, res, body) {
             var $, player;
 
             if (err) {
