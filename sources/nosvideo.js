@@ -71,6 +71,8 @@ module.exports.sight = function (url, options, done) {
                     return done(e);
                 }
 
+                file = needle.get(file, options);
+
                 done(null, file);
             });
         });
