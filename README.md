@@ -48,18 +48,23 @@ An array of the hosts *directdetect* supports.
 
 ## CLI
 ```
-    Usage: directdetect <link> [options]
-            <link> being a supported video-hosting website.
+Usage: directdetect <link> [options]
+        <link> being a video link from a supported host.
 
-            -h, --help      Display this screen.
+        -h, --help      Display this screen.
 
-            -t, --test      If <link> is provided, return true/false
-                            depending if directdetect is able to
-                            stream the link or not. Otherwise, list the
-                            available video-hosting websites.
+        -c, --check     If <link> is provided, return true/false
+                        depending if directdetect is able to
+                        stream the link or not. Otherwise, list the
+                        available video-hosting websites.
 
-            -o file         Output video contents to specified file.
-            -s, --stdout    Dump video contents to stdout.
+        -t, --timeout   Set a custom timeout for each request. By
+                        default the timeout is set to 10.
+        -x proxy        An HTTP proxy to send requests with.
+        -a agent        Set a custom HTTP User-Agent string.
+
+        -o file         Output video contents to specified file.
+        -s, --stdout    Dump video contents to stdout.
 ```
 
 ### Examples
