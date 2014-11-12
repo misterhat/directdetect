@@ -11,9 +11,11 @@ Currently `directdetect` supports the following websites:
 
 ## Installation
 For the module:
+
     $ npm install directdetect
 
 The command-line program:
+
     $ npm install -g directdetect
 
 ## Examples
