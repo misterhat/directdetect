@@ -1,0 +1,37 @@
+{
+  "name": "directdetect",
+  "version": "1.0.0",
+  "description": "Turn a variety of video-hosting website links into playable video streams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "directdetect": "./directdetect.js"
+  },
+  "keywords": [
+    "direct",
+    "video",
+    "streams",
+    "gorillavid",
+    "novamov",
+    "thefile"
+  ],
+  "author": "Mister Hat <misterhat144@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "localeval": "^13.12.11",
+    "minimist": "^1.1.0",
+    "needle": "^0.7.10"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/misterhat/directdetect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/misterhat/directdetect/issues"
+  },
+  "homepage": "https://github.com/misterhat/directdetect"
+}
