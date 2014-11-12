@@ -50,9 +50,7 @@ module.exports.sight = function (url, options, done) {
                 return done(e);
             }
 
-            player = player.match(
-                /file:[\s+]?["|'](.+?)["|']/
-            );
+            player = body.match(/file:(?:[ ]+)?["|'](.+?)["|']/);
 
             if (player) {
                 player = player[1];

@@ -14,7 +14,7 @@ module.exports.sight = function (url, options, done) {
             return done(new Error('No body returned.'));
         }
 
-        player = body.match(/lnk1\s?=\s?[\'|\"](.+?)[\'|\"]/);
+        player = body.match(/lnk1[ ]?=[ ]?['|"](.+?)['|"]/);
 
         if (player) {
             player = player[1];

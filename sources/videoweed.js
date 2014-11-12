@@ -5,7 +5,7 @@ var parse = require('url').parse,
 
 function findVariable(name, body) {
     var variable = body.match(
-        new RegExp('\\.' + name + '=[\\s+]?[\'|"]?(.+?)[\'|"]?;')
+        new RegExp('\\.' + name + '=(?:[ ]+)?[\'|"]?(.+?)[\'|"]?;')
     );
 
     if (!variable) {

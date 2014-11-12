@@ -14,9 +14,7 @@ module.exports.sight = function (url, options, done) {
             return done(new Error('No body returned.'));
         }
 
-        player = body.match(
-            /file:[\s+]?[\"|\'](.+?)[\"|\']\s/
-        );
+        player = body.match(/file:(?:[ ]+)?["|'](.+?)["|']\s/);
 
         if (player) {
             player = player[1];

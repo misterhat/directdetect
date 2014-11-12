@@ -22,7 +22,8 @@ module.exports.sight = function (url, options, done) {
         form = {
             referer: '',
             rand: '',
-            usr_login: ''
+            usr_login: '',
+            method_free: 'Free Download'
         };
 
         form.op = $('input[name="op"]').attr('value');
@@ -43,16 +44,14 @@ module.exports.sight = function (url, options, done) {
             form.method_free = '1';
         }
 
-        needle.post(url, form, function (err, res, body) {
+        needle.post(url, form, options, function (err, res, body) {
             var player;
 
             if (err) {
                 return done(err);
             }
 
-            player = body.match(
-                /file:[\s+]?[\"|\'](.+?)[\"|\']/
-            );
+            player = body.match(/file:(?:[ ]+)?["|'](.+?)["|']/);
 
             if (player) {
                 player = player[1];
