@@ -45,13 +45,16 @@ module.exports.sight = function (url, options, done) {
             key: key,
             file: file
         }, options, function (err, res, body) {
-            var player;
-
             if (err) {
                 return done(err);
             }
 
             player = querystring.parse(body).url;
+
+            if (!player) {
+                return done(new Error('No player URL found.'));
+            }
+
             player = needle.get(player, options);
 
             done(null, player);
