@@ -27,7 +27,7 @@ module.exports.sight = function (url, options, done) {
         url = 'http://' + domain + '/file/' + id;
     }
 
-    needle.get(url, function (err, res, body) {
+    needle.get(url, options, function (err, res, body) {
         var file, key, cid, player;
 
         if (err) {
@@ -44,15 +44,17 @@ module.exports.sight = function (url, options, done) {
             cid: cid,
             key: key,
             file: file
-        }, function (err, res, body) {
-            var link;
+        }, options, function (err, res, body) {
+            var player;
 
             if (err) {
                 return done(err);
             }
 
-            link = querystring.parse(body).url;
-            done(null, link);
+            player = querystring.parse(body).url;
+            player = needle.get(player, options);
+
+            done(null, player);
         });
     });
 };
