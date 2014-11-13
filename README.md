@@ -63,6 +63,7 @@ Usage: directdetect <link> [options]
         -x proxy        An HTTP proxy to send requests with.
         -a agent        Set a custom HTTP User-Agent string.
 
+        -q, --quiet     Don't output download progress.
         -o file         Output video contents to specified file.
         -s, --stdout    Dump video contents to stdout.
 ```

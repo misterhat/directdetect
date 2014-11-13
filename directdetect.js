@@ -34,7 +34,6 @@ if (!link || argv.h || argv.help) {
     console.log('Usage: ' + package.name + ' <link> [options]');
     console.log('\t<link> being a video link from a supported host.\n');
     console.log('\t-h, --help\tDisplay this screen.\n');
-    console.log('\t-q, --quiet\tDon\'t output download progress.\n');
     console.log('\t-c, --check\tIf <link> is provided, return true/false');
     console.log('\t\t\tdepending if ' + package.name + ' is able to');
     console.log('\t\t\tstream the link or not. Otherwise, list the');
@@ -43,6 +42,7 @@ if (!link || argv.h || argv.help) {
     console.log('\t\t\tdefault the timeout is set to 10.');
     console.log('\t-x proxy\tAn HTTP proxy to send requests with.');
     console.log('\t-a agent\tSet a custom HTTP User-Agent string.\n');
+    console.log('\t-q, --quiet\tDon\'t output download progress.');
     console.log('\t-o file\t\tOutput video contents to specified file.');
     console.log('\t-s, --stdout\tDump video contents to stdout.\n');
     console.log('Read the README.md file for more information.');
