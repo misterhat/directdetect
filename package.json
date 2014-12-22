@@ -1,6 +1,6 @@
 {
   "name": "directdetect",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Turn a variety of video-hosting website links into playable video streams.",
   "main": "index.js",
   "scripts": {

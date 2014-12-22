@@ -44,11 +44,18 @@ module.exports.sight = function (url, options, done) {
             form.method_free = '1';
         }
 
-        needle.post(url, form, options, function (err, res, body) {
-            var player;
+        needle.post(url, form, options, function (err, res) {
+            var body, player;
 
             if (err) {
                 return done(err);
+            }
+
+            if (!body) {
+                return done(new Error(
+                    'Empty body returned with status code ' + res.statusCode +
+                    '.'
+                ));
             }
 
             player = body.match(/file:(?:[ ]+)?["|'](.+?)["|']/);

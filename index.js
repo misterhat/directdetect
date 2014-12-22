@@ -22,6 +22,8 @@ function fetch(link, options, done) {
         options = {};
     }
 
+    options.follow = true;
+
     if (!test(link)) {
         return done(new Error('No handler found for "' + domain + '".'));
     }

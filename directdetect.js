@@ -16,10 +16,19 @@ var argv = minimist(process.argv.slice(2)),
     have = 0,
     bps = 0,
 
+    check = argv.c || argv.check,
+    timeout = argv.t || argv.timeout,
+    proxy = argv.x,
+    agent = argv.a,
+    quiet = argv.q || argv.quiet,
+    out = argv.o,
+    stdout = argv.s || argv.stdout,
+
     direct;
 
-if (argv.c || argv.check) {
-    link = link || argv.check;
+if (check) {
+    link = link || check;
+
     if (link) {
         return console.log(directdetect.test(link));
     }
@@ -27,7 +36,8 @@ if (argv.c || argv.check) {
     return console.log(directdetect.sources.join('\n'));
 }
 
-if (!link || argv.h || argv.help) {
+
+if (!link || (!stdout && !out)) {
     console.log('%s - %s', package.name, package.version);
     console.log(package.description + '\n');
 
@@ -55,9 +65,9 @@ if (!directdetect.test(link)) {
     return process.exit(1);
 }
 
-options.timeout = +(argv.t || argv.timeout) || 10;
-options.proxy = argv.x;
-options.user_agent = argv.a || argv.agent;
+options.timeout = +timeout || 10;
+options.proxy = proxy;
+options.user_agent = agent;
 
 direct = directdetect(link, options);
 
@@ -66,12 +76,11 @@ direct.on('error', function (err) {
     process.exit(1);
 });
 
-if (!argv.q && !argv.quiet && !argv.s && !argv.stdout) {
-    console.log('searching for file...');
-    console.time('stream locate');
+if (!quiet) {
+    console.error('searching for file...');
 
     direct.once('readable', function () {
-        console.timeEnd('stream locate');
+        console.error('success!');
     });
 
     direct.on('data', function (data) {
@@ -83,15 +92,15 @@ if (!argv.q && !argv.quiet && !argv.s && !argv.stdout) {
         process.stderr.clearLine();
         process.stderr.cursorTo(0);
         process.stderr.write(util.format(
-            'downloading at %s/s (%s)', bytes(bps), bytes(have))
+            'downloading at %s/s (%s saved)', bytes(bps), bytes(have))
         );
     }, 500);
 }
 
-if (argv.s || argv.stdout) {
+if (stdout) {
     direct.pipe(process.stdout);
 }
 
-if (argv.o) {
-    direct.pipe(fs.createWriteStream(argv.o));
+if (out) {
+    direct.pipe(fs.createWriteStream(out));
 }
