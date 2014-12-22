@@ -2,7 +2,7 @@ var cheerio = require('cheerio'),
     needle = require('needle');
 
 module.exports.domain = [
-    'gorillavid.in', 'daclips.in', 'vodlocker.com', 'royalvids.eu'
+    'gorillavid.in', 'daclips.in', 'royalvids.eu', 'vodlocker.com'
 ];
 
 module.exports.sight = function (url, options, done) {
@@ -20,13 +20,13 @@ module.exports.sight = function (url, options, done) {
         }
 
         form = {
-            referer: '',
+            referer: url,
             rand: '',
             usr_login: '',
             method_free: 'Free Download'
         };
 
-        form.op = $('input[name="op"]').attr('value');
+        form.op = $('input[name="op"]').last().attr('value');
         form.id = $('input[name="id"]').attr('value');
         form.fname = $('input[name="fname"]').attr('value');
 
@@ -44,7 +44,7 @@ module.exports.sight = function (url, options, done) {
             form.method_free = '1';
         }
 
-        needle.post(url, form, options, function (err, res) {
+        needle.post(url, form, options, function (err, res, body) {
             var body, player;
 
             if (err) {
