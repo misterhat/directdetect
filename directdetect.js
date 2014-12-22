@@ -2,20 +2,15 @@
 var fs = require('fs'),
     util = require('util'),
 
-    bytes = require('bytes'),
     directdetect = require('./'),
     minimist = require('minimist'),
-    speedometer = require('speedometer'),
 
     package = require('./package');
 
 var argv = minimist(process.argv.slice(2)),
-    link = argv._[0],
     options = {},
-    speed = speedometer(),
-    have = 0,
-    bps = 0,
 
+    link = argv._[0],
     check = argv.c || argv.check,
     timeout = argv.t || argv.timeout,
     proxy = argv.x,
@@ -82,19 +77,6 @@ if (!quiet) {
     direct.once('readable', function () {
         console.error('success!');
     });
-
-    direct.on('data', function (data) {
-        bps = speed(data.length);
-        have += data.length;
-    });
-
-    setInterval(function () {
-        process.stderr.clearLine();
-        process.stderr.cursorTo(0);
-        process.stderr.write(util.format(
-            'downloading at %s/s (%s saved)', bytes(bps), bytes(have))
-        );
-    }, 500);
 }
 
 if (stdout) {
